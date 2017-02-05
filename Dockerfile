@@ -1,6 +1,6 @@
 FROM alpine:3.5
-
 MAINTAINER Benjamin Kendinibilir <bkendinibilir@mac.com>
+ARG VERSION
 
 ENV SERVICE_SETTING_1=1 \
     SERVICE_SETTING_2=2

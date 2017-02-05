@@ -7,7 +7,7 @@ default: build
 all: clean build push
 
 build:
-	docker build -t ${REGISTRY}/${NAME}:${VERSION} .
+	docker build --build-arg VERSION=${VERSION} -t ${REGISTRY}/${NAME}:${VERSION} .
 
 clean:
 	docker rmi ${REGISTRY}/${NAME}:${VERSION}
