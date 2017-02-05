@@ -2,12 +2,15 @@ NAME = SERVICE
 VERSION ?= latest
 REGISTRY ?= eu.gcr.io/techstories-155021
 
-default: build
+default: buildwithcache
 
 all: clean build push
 
 build:
-	docker build --build-arg VERSION=${VERSION} -t ${REGISTRY}/${NAME}:${VERSION} .
+	docker build --no-cache --build-arg VERSION=${VERSION} -t ${REGISTRY}/${NAME}:${VERSION} .
+
+buildwithcache:
+	docker build -t ${REGISTRY}/${NAME}:${VERSION} .
 
 clean:
 	docker rmi ${REGISTRY}/${NAME}:${VERSION}
@@ -15,5 +18,5 @@ clean:
 push: build
 	gcloud docker -- push ${REGISTRY}/${NAME}:${VERSION}
 
-shell: build
+shell: buildwithcache
 	docker run -ti --rm ${REGISTRY}/${NAME}:${VERSION} /bin/sh
