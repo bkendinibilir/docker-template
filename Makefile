@@ -1,6 +1,6 @@
 NAME = SERVICE
-REGISTRY ?= eu.gcr.io/techstories-155021
 VERSION ?= latest
+REGISTRY ?= eu.gcr.io/techstories-155021
 
 build:
 	docker build -t ${REGISTRY}/${NAME}:${VERSION} .
